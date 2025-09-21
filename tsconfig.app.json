@@ -7,7 +7,9 @@
     "types": []
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/environments/environment.dev.ts.example",
+    "src/environments/environment.ts.example"
   ],
   "exclude": [
     "src/**/*.spec.ts"
