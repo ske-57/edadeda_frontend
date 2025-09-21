@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://localhost:8089', // change from localhost to real ip
+    apiUrl: 'https://localhost:8089', // should change from local api url to global(server ip)
     debugMode: false,
 };
