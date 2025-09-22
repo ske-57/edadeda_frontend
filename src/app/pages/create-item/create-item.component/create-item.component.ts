@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Item } from '../../../services/item/item.service';
+import { TelegramService } from '../../../services/telegram/telegram.service';
 
 type CreateItemModel = {
   title: string;
@@ -20,10 +21,26 @@ type PreviewFile = { file: File; url: string };
   templateUrl: './create-item.component.html',
   styleUrl: './create-item.component.css'
 })
-export class CreateItemComponent {
+export class CreateItemComponent implements OnInit, OnDestroy {
+  tg = inject(TelegramService);
+  router = inject(Router);
   model: CreateItemModel = { title: '', description: '', location: '', price: null };
-
   files: PreviewFile[] = [];
+
+
+  constructor() {
+    this.navigateToStart = this.navigateToStart.bind(this);
+    this.sendItemData = this.sendItemData.bind(this);
+  }
+
+  ngOnInit(): void {
+    this.setVisibileTgButton(true);
+  }
+
+  ngOnDestroy() {
+    this.revokeAll();
+    this.setVisibileTgButton(false);
+  }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -51,10 +68,6 @@ export class CreateItemComponent {
     for (const pf of this.files) URL.revokeObjectURL(pf.url);
   }
 
-  ngOnDestroy() {
-    this.revokeAll();
-  }
-
   generateNewItem(): CreateItemModel {
     const body: any = {
       title: (this.model.title || '').trim(),
@@ -62,6 +75,32 @@ export class CreateItemComponent {
       price: Number(this.model.price ?? 0),
     };
     if (this.model.location?.trim()) body.location = this.model.location.trim();
+    if (this.files.length != 0) body.file = this.files[0];
     return body;
+  }
+
+  setVisibileTgButton(needToEnable: boolean): void {
+    if (needToEnable) {
+      this.tg.BackButton.show();
+      this.tg.BackButton.onClick(this.navigateToStart);
+
+      this.tg.MainButton.show();
+      this.tg.MainButton.setText('Опубликовать edudeda');
+      this.tg.MainButton.onClick(this.sendItemData);
+    } else {
+      this.tg.BackButton.hide();
+      this.tg.BackButton.offClick(this.navigateToStart);
+
+      this.tg.MainButton.hide();
+      this.tg.MainButton.offClick(this.sendItemData);
+    }
+  }
+
+  sendItemData(): void {
+    console.log(this.generateNewItem());
+  }
+
+  navigateToStart(): void {
+    this.router.navigate(['/']);
   }
 }

@@ -27,6 +27,8 @@
 }
 
 .field {
+    margin-right: 5%;
+    margin-left: 2%;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -82,7 +84,7 @@
 
 /* Прикрепление файла — ссылка с иконкой */
 .attach {
-    margin-top: 2px;
+    margin-top: 12px;
 }
 
 .attach-label {
