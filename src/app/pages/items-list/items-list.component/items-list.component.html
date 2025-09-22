@@ -4,7 +4,7 @@
 
         <section class="items-list">
             @for (item of itemsList; track item.id){
-            <article class="item-card" [attr.data-id]="item.id">
+            <article class="item-card" [attr.data-id]="item.id" (click)="navigateToItemDetails(item.id)">
                 <img class="item-img" [src]="item.image_path || 'assets/edadeda.logo.png'" [alt]="item.title" />
 
                 <div class="item-info">

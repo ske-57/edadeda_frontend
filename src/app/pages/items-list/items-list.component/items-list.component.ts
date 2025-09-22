@@ -79,7 +79,6 @@ export class ItemsListComponent implements OnInit, OnDestroy {
     this.itemService.getAllItems().subscribe({
       next: (data) => {
         this.itemsList = data;
-        console.log(data);
       },
       error: (err) => {
         console.error(err);
@@ -92,6 +91,6 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   }
 
   navigateToItemDetails(itemId: number): void {
-    this.router.navigate([`/${itemId}`]);
+    this.router.navigate([`items/${itemId}`]);
   }
 }

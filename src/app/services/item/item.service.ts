@@ -27,4 +27,8 @@ export class ItemService {
   getAllItems(): Observable<any> {
     return this.http.get(`${this.baseApi}/items`);
   }
+
+  getItemDetails(itemId: number): Observable<any> {
+    return this.http.get(`${this.baseApi}/items/${itemId}`);
+  }
 }

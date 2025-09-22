@@ -1,0 +1,76 @@
+<div class="page">
+    <main class="content">
+
+        <!-- Галерея -->
+        <section class="gallery">
+            <img class="hero-img" [src]="item.image_path || 'assets/edadeda.logo.png'" [alt]="item.title" />
+            <span class="status" [ngClass]="{
+          'status-available': item.status?.toLowerCase() === 'available',
+          'status-reserved':  item.status?.toLowerCase() === 'reserved',
+          'status-sold':      item.status?.toLowerCase() === 'sold'
+        }">
+                {{ item.status || '—' }}
+            </span>
+        </section>
+
+        <!-- Заголовок и цена -->
+        <header class="heading">
+            <h1 class="title">{{ item.title }}</h1>
+            <div class="price-row">
+                <span class="price">{{ item.price | currency:'RUB ':'symbol':'1.0-0' }}</span>
+                <span class="location" *ngIf="item.location">{{ item.location }}</span>
+            </div>
+        </header>
+
+        <!-- Быстрые действия -->
+        <div class="quick-actions">
+            <a class="pill" *ngIf="item.auto_report_link" [href]="item.auto_report_link" target="_blank" rel="noopener">
+                <img class="icon-img" src="assets/world.png" alt="Отчёт" />
+                <span class="pill-text">Отчёт о товаре</span>
+            </a>
+
+            <button class="pill" type="button">
+                <img class="icon-img" src="assets/chat.png" alt="Связаться" />
+                <span class="pill-text">Связаться с продавцом</span>
+            </button>
+        </div>
+
+        <!-- Описание -->
+        <section class="card">
+            <h2 class="section-title">Описание</h2>
+            <p class="description">
+                {{ item.description || 'Описание отсутствует' }}
+            </p>
+        </section>
+
+        <!-- Информация о продавце / метаданные -->
+        <section class="card">
+            <h2 class="section-title">Информация</h2>
+            <ul class="meta-list">
+                <li class="meta-row">
+                    <span class="meta-key">ID товара</span>
+                    <span class="meta-val">#{{ item.id }}</span>
+                </li>
+                <li class="meta-row">
+                    <span class="meta-key">Продавец</span>
+                    <span class="meta-val">ID {{ item.seller_id }}</span>
+                </li>
+                <li class="meta-row" *ngIf="item.location">
+                    <span class="meta-key">Локация</span>
+                    <span class="meta-val">{{ item.location }}</span>
+                </li>
+                <li class="meta-row" *ngIf="item.status">
+                    <span class="meta-key">Статус</span>
+                    <span class="meta-val">{{ item.status }}</span>
+                </li>
+                <li class="meta-row" *ngIf="item.auto_report_link">
+                    <span class="meta-key">Отчёт</span>
+                    <a class="meta-link" [href]="item.auto_report_link" target="_blank" rel="noopener">
+                        Открыть
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+</div>
