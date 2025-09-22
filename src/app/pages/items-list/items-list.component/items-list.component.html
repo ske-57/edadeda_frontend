@@ -14,7 +14,7 @@
                         <span class="status" [ngClass]="{
                 'status-available': item.status?.toLowerCase() === 'available',
                 'status-reserved':  item.status?.toLowerCase() === 'reserved',
-                'status-sold':      item.status?.toLowerCase() === 'sold'
+                'status-sold':      item.status?.toLowerCase() === 'closed'
               }">
                             {{ item.status || '—' }}
                         </span>

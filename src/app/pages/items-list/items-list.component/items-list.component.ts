@@ -33,7 +33,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
       "description": "The best car ever i saw",
       "price": 123,
       "location": "Moscow City",
-      "status": "AVAILABLE",
+      "status": "RESERVED",
       "auto_report_link": "https://example.com",
       "seller_id": 2
     },
@@ -43,7 +43,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
       "description": "The Paul's Walker car",
       "price": 39000,
       "location": "Brazil",
-      "status": "AVAILABLE",
+      "status": "CLOSED",
       "auto_report_link": "https://example.com",
       "seller_id": 4
     }
@@ -91,4 +91,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/']);
   }
 
+  navigateToItemDetails(itemId: number): void {
+    this.router.navigate([`/${itemId}`]);
+  }
 }
