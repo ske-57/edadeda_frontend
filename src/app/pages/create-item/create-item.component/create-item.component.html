@@ -1,0 +1,54 @@
+<div class="page">
+    <main class="content">
+        <h1 class="title">Создайте <span class="brand">edudeda</span></h1>
+
+        <form class="form" novalidate>
+            <!-- Название -->
+            <label class="field">
+                <span class="field-label">Название товара *</span>
+                <input class="input" type="text" name="title" placeholder="Например: Домашние яйца"
+                    [(ngModel)]="model.title" required />
+            </label>
+
+            <!-- Описание -->
+            <label class="field">
+                <span class="field-label">Описание товара *</span>
+                <textarea class="textarea" name="description" rows="4" placeholder="Кратко опишите товар и состояние"
+                    [(ngModel)]="model.description" required></textarea>
+            </label>
+
+            <!-- Локация -->
+            <label class="field">
+                <span class="field-label">Локация</span>
+                <input class="input" type="text" name="location" placeholder="Страна, город / посёлок"
+                    [(ngModel)]="model.location" />
+            </label>
+
+            <!-- Цена -->
+            <label class="field">
+                <span class="field-label">Цена *</span>
+                <input class="input" type="number" name="price" min="0" step="1" inputmode="numeric" placeholder="0"
+                    [(ngModel)]="model.price" required />
+            </label>
+
+            <!-- Прикрепить файл -->
+            <div class="attach">
+                <label class="attach-label">
+                    <input class="attach-input" type="file" (change)="onFileSelected($event)" accept="image/*" />
+                    <span class="attach-emoji" aria-hidden="true">📎</span>
+                    <span class="attach-text">Прикрепить файл</span>
+                </label>
+            </div>
+            <!-- Превью файлов -->
+            <div *ngIf="files.length > 0" class="file-status-container">
+                <div *ngFor="let pf of files; let i = index" class="file-status">
+                    <div class="file-preview">
+                        <img [src]="pf.url" alt="preview" />
+                    </div>
+                    <span>{{ pf.file.name }}</span>
+                    <button type="button" (click)="removeFile(i)">✖</button>
+                </div>
+            </div>
+        </form>
+    </main>
+</div>

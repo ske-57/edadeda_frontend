@@ -27,4 +27,8 @@ export class StartComponent implements OnInit, OnDestroy {
   navigateToItemsList(): void {
     this.router.navigate(['/items']);
   }
+
+  navigateToCreatingItem(): void {
+    this.router.navigate(['/create'])
+  }
 }

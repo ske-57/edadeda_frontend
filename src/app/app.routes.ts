@@ -3,6 +3,7 @@ import { StartComponent } from './pages/start/start.component/start.component';
 import { ItemsListComponent } from './pages/items-list/items-list.component/items-list.component';
 import { ItemDetailsComponent } from './pages/item-details/item-details.component/item-details.component';
 import { CartComponent } from './pages/cart/cart.component/cart.component';
+import { CreateItemComponent } from './pages/create-item/create-item.component/create-item.component';
 
 export const routes: Routes = [
     { path: '', component: StartComponent, pathMatch: 'full' },
@@ -11,4 +12,6 @@ export const routes: Routes = [
     { path: 'items/:itemId', component: ItemDetailsComponent },
 
     { path: 'cart', component: CartComponent },
+
+    { path: 'create', component: CreateItemComponent },
 ];
