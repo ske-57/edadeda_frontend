@@ -52,9 +52,14 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     if (needToEnable) {
       this.tg.BackButton.show();
       this.tg.BackButton.onClick(this.navigateToItemsList);
+
+      this.tg.MainButton.show();
+      this.tg.MainButton.setText('Корзина');
     } else {
       this.tg.BackButton.hide();
       this.tg.BackButton.offClick(this.navigateToItemsList);
+
+      this.tg.MainButton.hide();
     }
   }
 
