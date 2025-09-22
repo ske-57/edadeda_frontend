@@ -53,6 +53,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.navigateToStart = this.navigateToStart.bind(this);
+    this.navigateToCart = this.navigateToCart.bind(this);
   }
 
   ngOnInit(): void {
@@ -72,11 +73,13 @@ export class ItemsListComponent implements OnInit, OnDestroy {
 
       this.tg.MainButton.show();
       this.tg.MainButton.setText('Корзина');
+      this.tg.MainButton.onClick(this.navigateToCart);
     } else {
       this.tg.BackButton.hide();
       this.tg.BackButton.offClick(this.navigateToStart);
 
       this.tg.MainButton.hide();
+      this.tg.MainButton.offClick(this.navigateToCart);
     }
   }
 
@@ -97,5 +100,9 @@ export class ItemsListComponent implements OnInit, OnDestroy {
 
   navigateToItemDetails(itemId: number): void {
     this.router.navigate([`items/${itemId}`]);
+  }
+
+  navigateToCart(): void {
+    this.router.navigate(['/cart'])
   }
 }
