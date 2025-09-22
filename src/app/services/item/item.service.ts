@@ -3,6 +3,18 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export type Item = {
+  id: number,
+  title: string,
+  description: string,
+  price: number,
+  location?: string,
+  status?: string,
+  auto_report_link?: string,
+  seller_id: number,
+  image_path?: string
+}
+
 @Injectable({
   providedIn: 'root'
 })

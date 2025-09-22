@@ -1,0 +1,51 @@
+<div class="page">
+    <main class="content">
+        <h2 class="title">Список товаров</h2>
+
+        <section class="items-list">
+            @for (item of itemsList; track item.id){
+            <article class="item-card" [attr.data-id]="item.id">
+                <img class="item-img" [src]="item.image_path || 'assets/edadeda.logo.png'" [alt]="item.title" />
+
+                <div class="item-info">
+                    <header class="item-head">
+                        <h3 class="item-title">{{ item.title }}</h3>
+
+                        <span class="status" [ngClass]="{
+                'status-available': item.status?.toLowerCase() === 'available',
+                'status-reserved':  item.status?.toLowerCase() === 'reserved',
+                'status-sold':      item.status?.toLowerCase() === 'sold'
+              }">
+                            {{ item.status || '—' }}
+                        </span>
+                    </header>
+
+                    <p class="item-description">{{ item.description }}</p>
+
+                    <div class="meta">
+                        <span class="item-price">
+                            {{ item.price | currency:'RUB ' }}
+                        </span>
+                        <span class="item-location" *ngIf="item.location">
+                            {{ item.location }}
+                        </span>
+                    </div>
+
+                    <div class="actions">
+                        <a class="pill small" *ngIf="item.auto_report_link" [href]="item.auto_report_link"
+                            target="_blank" rel="noopener">
+                            <img class="icon-img" src="assets/world.png" alt="Отчёт" />
+                            <span class="pill-text">Отчёт</span>
+                        </a>
+                        <button class="pill small" type="button">
+                            <img class="icon-img" src="assets/chat.png" alt="Связаться" />
+                            <span class="pill-text">Связаться</span>
+                        </button>
+                    </div>
+
+                </div>
+            </article>
+            }
+        </section>
+    </main>
+</div>

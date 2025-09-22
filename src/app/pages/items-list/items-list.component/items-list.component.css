@@ -1,0 +1,146 @@
+.page {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background: var(--tg-bg-color);
+}
+
+.content {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--tg-text-color);
+    text-align: center;
+}
+
+/* Список товаров */
+.items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.item-card {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--tg-secondary-bg-color);
+    color: var(--tg-text-color);
+    align-items: flex-start;
+}
+
+.item-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 8px;
+}
+
+.item-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.item-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    flex: 1;
+}
+
+.status {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--tg-secondary-bg-color);
+    color: var(--tg-hint-color);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.status-available {
+    background: rgba(0, 200, 83, 0.15);
+    color: #00c853;
+}
+
+.status-reserved {
+    background: rgba(255, 179, 0, 0.15);
+    color: #ffb300;
+}
+
+.status-sold {
+    background: rgba(239, 83, 80, 0.15);
+    color: #ef5350;
+}
+
+.item-description {
+    font-size: 13px;
+    color: var(--tg-hint-color);
+    margin: 0;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-price {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.item-location {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Кнопки действий */
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--tg-secondary-bg-color);
+    color: var(--tg-text-color);
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    text-decoration: none;
+}
+
+.pill.small {
+    padding: 6px 8px;
+    font-size: 13px;
+}
+
+.icon-img {
+    width: 16px;
+    height: 16px;
+}
