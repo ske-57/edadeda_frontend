@@ -37,6 +37,7 @@ export class TelegramService {
 
   getUserData(): any {
     const InitData = this.InitData;
+    console.log(InitData);
     return InitData ? InitData : null;
   }
 
