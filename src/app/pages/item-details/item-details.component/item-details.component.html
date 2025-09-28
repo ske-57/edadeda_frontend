@@ -17,7 +17,7 @@
         <header class="heading">
             <h1 class="title">{{ item.title }}</h1>
             <div class="price-row">
-                <span class="price">{{ item.price | currency:'RUB ':'symbol':'1.0-0' }}</span>
+                <span class="price">{{ item.price | currency:'RUB ' }}</span>
                 <span class="location" *ngIf="item.location">{{ item.location }}</span>
             </div>
         </header>

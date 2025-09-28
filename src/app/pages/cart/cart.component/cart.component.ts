@@ -3,6 +3,7 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { TelegramService } from '../../../services/telegram/telegram.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from '../../../services/item/item.service';
+import { CartItem, CartService } from '../../../services/cart/cart.service';
 
 @Component({
   selector: 'app-cart.component',
@@ -15,13 +16,14 @@ export class CartComponent implements OnInit, OnDestroy {
   tg = inject(TelegramService);
   router = inject(Router);
   route = inject(ActivatedRoute);
+  cartService = inject(CartService);
 
-  cartItems: Item[] = [
+  cartItems: CartItem[] = [
     {
       "id": 1,
       "title": "BMW M5 F90",
       "description": "The best car ever i saw",
-      "price": 123,
+      "price": 39000,
       "location": "Moscow City",
       "status": "AVAILABLE",
       "auto_report_link": "https://example.com",
@@ -45,8 +47,9 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.setVisibileTgButton(true);
+    this.getCartItems();
     this.getTotalAmount();
+    this.setVisibileTgButton(true);
   }
 
   ngOnDestroy(): void {
@@ -68,10 +71,21 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   }
 
+  getCartItems(): void {
+    this.cartService.getCartItems(1).subscribe({
+      next: (data) => {
+        this.cartItems = data;
+      },
+      error: (err) => {
+        console.error('error while getting cart items: ', err);
+      }
+    }
+    )
+  }
+
   getTotalAmount(): void {
     this.cartItems.forEach((item) => {
       this.total += item.price;
-      console.log(this.total);
     })
   }
 
