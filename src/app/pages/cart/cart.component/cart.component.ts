@@ -4,6 +4,7 @@ import { TelegramService } from '../../../services/telegram/telegram.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from '../../../services/item/item.service';
 import { CartItem, CartService } from '../../../services/cart/cart.service';
+import { Order, OrderService } from '../../../services/order/order.service';
 
 @Component({
   selector: 'app-cart.component',
@@ -17,6 +18,7 @@ export class CartComponent implements OnInit, OnDestroy {
   router = inject(Router);
   route = inject(ActivatedRoute);
   cartService = inject(CartService);
+  orderService = inject(OrderService);
 
   cartItems: CartItem[] = [
     {
@@ -44,6 +46,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.navigateToItemsList = this.navigateToItemsList.bind(this);
+    this.createOrder = this.createOrder.bind(this);
   }
 
   ngOnInit(): void {
@@ -63,11 +66,13 @@ export class CartComponent implements OnInit, OnDestroy {
 
       this.tg.MainButton.show();
       this.tg.MainButton.setText('Оформить заказ');
+      this.tg.MainButton.onClick(this.createOrder);
     } else {
       this.tg.BackButton.hide();
       this.tg.BackButton.offClick(this.navigateToItemsList);
 
       this.tg.MainButton.hide();
+      this.tg.MainButton.offClick(this.createOrder);
     }
   }
 
@@ -81,6 +86,27 @@ export class CartComponent implements OnInit, OnDestroy {
       }
     }
     )
+  }
+
+  generateOrderBody(): Order {
+    const order: Order = {
+      item_id: this.cartItems[0].id,
+      buyer_id: 2,
+      price: this.cartItems[0].price
+    }
+    return order
+  }
+
+  createOrder(): void {
+    this.orderService.createOrder(this.generateOrderBody()).subscribe({
+      next: (data) => {
+        console.log('All is ok!');
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.error('Error creating order: ', err);
+      }
+    })
   }
 
   getTotalAmount(): void {
