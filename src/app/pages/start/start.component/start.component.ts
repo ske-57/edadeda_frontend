@@ -72,7 +72,6 @@ export class StartComponent implements OnInit, OnDestroy {
   getCartId(): void {
     this.cartService.getCartIdByUserId(this.userService.getId()).subscribe({
       next: (data) => {
-        console.log('Got it')
         this.userService.saveCartId(data.id);
       },
       error: (err) => {
