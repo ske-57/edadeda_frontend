@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { inject, Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 interface TgButton {
@@ -35,10 +35,10 @@ export class TelegramService {
     return this.tg.initData;
   }
 
-  getUserData(): any {
-    const InitData = this.InitData;
-    console.log(InitData);
-    return InitData ? InitData : null;
+  getInitData(): any {
+    const data_check_string = this.InitData;
+    console.log(data_check_string);
+    return data_check_string ? data_check_string : null;
   }
 
 }

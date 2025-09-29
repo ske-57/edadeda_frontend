@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from '../../../services/item/item.service';
 import { CartItem, CartService } from '../../../services/cart/cart.service';
 import { Order, OrderService } from '../../../services/order/order.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-cart.component',
@@ -19,6 +20,7 @@ export class CartComponent implements OnInit, OnDestroy {
   route = inject(ActivatedRoute);
   cartService = inject(CartService);
   orderService = inject(OrderService);
+  userService = inject(UserService);
 
   cartItems: CartItem[] = [
     {
@@ -53,6 +55,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.getCartItems();
     this.getTotalAmount();
     this.setVisibileTgButton(true);
+    console.log('Cart:', this.userService.getStorageData());
   }
 
   ngOnDestroy(): void {
@@ -77,7 +80,7 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   getCartItems(): void {
-    this.cartService.getCartItems(1).subscribe({
+    this.cartService.getCartItems(2).subscribe({
       next: (data) => {
         this.cartItems = data;
       },

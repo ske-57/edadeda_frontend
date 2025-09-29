@@ -9,7 +9,8 @@
   "include": [
     "src/**/*.ts",
     "src/environments/environment.dev.ts.example",
-    "src/environments/environment.ts.example"
+    "src/environments/environment.ts.example",
+    "src/app/services/telegram/auth.js"
   ],
   "exclude": [
     "src/**/*.spec.ts"
