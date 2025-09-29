@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export type Order = {
   id?: number,
   item_id: number,
-  buyer_id: number,
+  user_id: number,
   price: number
 }
 

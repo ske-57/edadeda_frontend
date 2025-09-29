@@ -88,4 +88,8 @@ export class StartComponent implements OnInit, OnDestroy {
   navigateToCreatingItem(): void {
     this.router.navigate(['/create'])
   }
+
+  navigateToOrders(): void {
+    this.router.navigate(['/orders'])
+  }
 }

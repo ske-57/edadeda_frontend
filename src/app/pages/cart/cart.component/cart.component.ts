@@ -93,7 +93,7 @@ export class CartComponent implements OnInit, OnDestroy {
   generateOrderBody(): Order {
     const order: Order = {
       item_id: this.cartItems[0].id,
-      buyer_id: this.userService.getId(),
+      user_id: this.userService.getId(),
       price: this.cartItems[0].price
     }
     return order

@@ -1,1 +1,34 @@
-<p>my-orders.component works!</p>
+<div class="page">
+    <main class="content">
+        <h2 class="title">Мои заказы</h2>
+
+        <!-- Пустое состояние -->
+        <ng-template #emptyState>
+            <section class="empty">
+                <img class="empty-icon" src="assets/edadeda.logo.png" alt="Пусто" />
+                <h3>Заказов пока нет</h3>
+                <p class="empty-text">Оформите первый заказ из списка товаров.</p>
+                <a class="pill" routerLink="/items">
+                    <img class="icon-img" src="assets/world.png" alt="" />
+                    <span class="pill-text">Перейти к товарам</span>
+                </a>
+            </section>
+        </ng-template>
+
+        <!-- Список заказов -->
+        <section class="orders-list" *ngIf="orders?.length; else emptyState">
+            <article class="order-row" *ngFor="let o of orders">
+                <div class="order-main">
+                    <div class="order-title">Заказ №{{ o.id }}</div>
+                    <div class="order-sub">
+                        Товар №{{ o.item_id }}
+                    </div>
+                </div>
+
+                <div class="order-price">
+                    {{ o.price | currency:'RUB ' }}
+                </div>
+            </article>
+        </section>
+    </main>
+</div>

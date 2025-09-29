@@ -1,0 +1,116 @@
+.page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: var(--tg-bg-color);
+}
+
+.content {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: var(--tg-text-color);
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0;
+    text-align: center;
+}
+
+/* Пустое состояние */
+.empty {
+    display: grid;
+    place-items: center;
+    gap: 8px;
+    padding: 24px;
+    background: var(--tg-secondary-bg-color);
+    border-radius: 14px;
+    text-align: center;
+}
+
+.empty-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.empty h3 {
+    margin: 4px 0 0;
+    font-size: 16px;
+}
+
+.empty-text {
+    margin: 0;
+    font-size: 13px;
+    color: var(--tg-hint-color);
+}
+
+/* Список заказов */
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Строка заказа — максимально простая карточка в общем стиле */
+.order-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--tg-secondary-bg-color);
+    align-items: center;
+}
+
+.order-main {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.order-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.order-sub {
+    font-size: 12px;
+    color: var(--tg-hint-color);
+}
+
+/* Цена справа */
+.order-price {
+    font-size: 15px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+/* Кнопка-пилюля (как в корзине) */
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--tg-secondary-bg-color);
+    color: var(--tg-text-color);
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    text-decoration: none;
+}
+
+.icon-img {
+    width: 16px;
+    height: 16px;
+}
