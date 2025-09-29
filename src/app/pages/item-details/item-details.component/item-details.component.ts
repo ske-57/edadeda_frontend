@@ -70,7 +70,6 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     this.itemService.getItemDetails(itemId).subscribe({
       next: (data) => {
         this.item = data;
-        console.log(data);
       },
       error: (err) => {
         console.error(err);
