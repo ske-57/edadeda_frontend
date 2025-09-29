@@ -19,13 +19,13 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   item: Item = {
     "id": 1,
-    "title": "BMW M5 F90",
-    "description": "The best car ever i saw",
-    "price": 123,
-    "location": "Moscow City",
-    "status": "AVAILABLE",
-    "auto_report_link": "https://example.com",
-    "seller_id": 2
+    "title": "",
+    "description": "",
+    "price": 0,
+    "location": "",
+    "status": "",
+    "auto_report_link": "",
+    "seller_id": 0
   }
   itemId: number | undefined;
 

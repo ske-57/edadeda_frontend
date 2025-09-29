@@ -12,7 +12,8 @@ export type User = {
   id?: number,
   tg_id: number,
   name: string,
-  is_seller?: boolean
+  is_seller?: boolean,
+  cart_id?: number
 }
 
 
@@ -23,11 +24,17 @@ export class UserService {
   private readonly ID_KEY = 'id';
   private readonly TG_ID_KEY = 'tg_id';
   private readonly NAME_KEY = 'name';
+  private readonly CART_ID = 'cart_id'
 
   constructor(private http: HttpClient) { }
 
   getName(): string | null {
     return sessionStorage.getItem(this.NAME_KEY);
+  }
+
+  getCartId(): number {
+    const raw = sessionStorage.getItem(this.CART_ID);
+    return raw !== null ? Number(raw) : -1;
   }
 
   getId(): number {
@@ -49,14 +56,20 @@ export class UserService {
     sessionStorage.setItem(this.NAME_KEY, user.name)
   }
 
+  saveCartId(cart_id: number): void {
+    sessionStorage.setItem(this.CART_ID, String(cart_id));
+  }
+
   getStorageData(): User {
     const id = sessionStorage.getItem(this.ID_KEY)
     const tg_id = sessionStorage.getItem(this.TG_ID_KEY)
     const name = sessionStorage.getItem(this.NAME_KEY);
+    const cart_id = sessionStorage.getItem(this.CART_ID);
     const user: User = {
       id: Number(id),
       tg_id: Number(tg_id),
-      name: String(name)
+      name: String(name),
+      cart_id: Number(cart_id),
     }
     return user
   }

@@ -108,6 +108,16 @@
     letter-spacing: .04em;
 }
 
+.meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* статус и цена выравнены по правому краю */
+    gap: 6px;
+    min-width: max-content;
+    /* чтобы плашка статуса/цена не ломались переносами */
+}
+
 .status-available {
     background: rgba(0, 200, 83, 0.15);
     color: #00c853;
@@ -189,7 +199,6 @@
 .line-price {
     font-size: 15px;
     font-weight: 800;
-    align-self: center;
 }
 
 /* Итоги */

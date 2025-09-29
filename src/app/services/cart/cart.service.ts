@@ -3,6 +3,11 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export type Cart = {
+  id: number,
+  user_id: number
+}
+
 export type CartItem = {
   id: number,
   title: string,
@@ -26,5 +31,9 @@ export class CartService {
 
   getCartItems(cartId: number): Observable<CartItem[]> {
     return this.http.get<CartItem[]>(`${this.baseApi}/cart/${cartId}/items`);
+  }
+
+  getCartIdByUserId(userId: number): Observable<Cart> {
+    return this.http.get<Cart>(`${this.baseApi}/cart/${userId}`);
   }
 }

@@ -37,7 +37,7 @@ export class TelegramService {
 
   getInitData(): any {
     const data_check_string = this.InitData;
-    console.log(data_check_string);
+    // console.log(data_check_string);
     return data_check_string ? data_check_string : null;
   }
 

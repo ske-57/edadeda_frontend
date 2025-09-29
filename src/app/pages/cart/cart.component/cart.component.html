@@ -23,13 +23,6 @@
                 <div class="info">
                     <header class="head">
                         <h3 class="item-title">{{ item.title }}</h3>
-                        <span class="status" *ngIf="item.status" [ngClass]="{
-                'status-available': item.status.toLowerCase() === 'available',
-                'status-reserved':  item.status.toLowerCase() === 'reserved',
-                'status-sold':      item.status.toLowerCase() === 'closed'
-              }">
-                            {{ item.status }}
-                        </span>
                     </header>
 
                     <p class="desc" *ngIf="item.description">{{ item.description }}</p>
@@ -46,8 +39,18 @@
                     </div>
                 </div>
 
-                <div class="line-price">
-                    {{ item.price| currency:'RUB ' }}
+                <div class="meta">
+                    <span class="status" *ngIf="item.status" [ngClass]="{
+              'status-available': item.status.toLowerCase() === 'available',
+              'status-reserved':  item.status.toLowerCase() === 'reserved',
+              'status-sold':      item.status.toLowerCase() === 'closed'
+            }">
+                        {{ item.status }}
+                    </span>
+
+                    <div class="line-price">
+                        {{ item.price | currency:'RUB ' }}
+                    </div>
                 </div>
             </article>
         </section>

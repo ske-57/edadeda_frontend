@@ -23,26 +23,26 @@ export class CartComponent implements OnInit, OnDestroy {
   userService = inject(UserService);
 
   cartItems: CartItem[] = [
-    {
-      "id": 1,
-      "title": "BMW M5 F90",
-      "description": "The best car ever i saw",
-      "price": 39000,
-      "location": "Moscow City",
-      "status": "AVAILABLE",
-      "auto_report_link": "https://example.com",
-      "seller_id": 2
-    },
-    {
-      "id": 4,
-      "title": "Toyota Supra",
-      "description": "The Paul's Walker car",
-      "price": 39000,
-      "location": "Brazil",
-      "status": "CLOSED",
-      "auto_report_link": "https://example.com",
-      "seller_id": 4
-    }
+    // {
+    //   "id": 1,
+    //   "title": "BMW M5 F90",
+    //   "description": "The best car ever i saw",
+    //   "price": 39000,
+    //   "location": "Moscow City",
+    //   "status": "AVAILABLE",
+    //   "auto_report_link": "https://example.com",
+    //   "seller_id": 2
+    // },
+    // {
+    //   "id": 4,
+    //   "title": "Toyota Supra",
+    //   "description": "The Paul's Walker car",
+    //   "price": 39000,
+    //   "location": "Brazil",
+    //   "status": "CLOSED",
+    //   "auto_report_link": "https://example.com",
+    //   "seller_id": 4
+    // }
   ]
   total: number = 0;
 
@@ -53,9 +53,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getCartItems();
-    this.getTotalAmount();
     this.setVisibileTgButton(true);
-    console.log('Cart:', this.userService.getStorageData());
   }
 
   ngOnDestroy(): void {
@@ -80,9 +78,10 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   getCartItems(): void {
-    this.cartService.getCartItems(2).subscribe({
+    this.cartService.getCartItems(this.userService.getCartId()).subscribe({
       next: (data) => {
         this.cartItems = data;
+        this.getTotalAmount();
       },
       error: (err) => {
         console.error('error while getting cart items: ', err);
@@ -94,7 +93,7 @@ export class CartComponent implements OnInit, OnDestroy {
   generateOrderBody(): Order {
     const order: Order = {
       item_id: this.cartItems[0].id,
-      buyer_id: 2,
+      buyer_id: this.userService.getId(),
       price: this.cartItems[0].price
     }
     return order
@@ -104,6 +103,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.orderService.createOrder(this.generateOrderBody()).subscribe({
       next: (data) => {
         console.log('All is ok!');
+        console.log(data);
         this.router.navigate(['/']);
       },
       error: (err) => {

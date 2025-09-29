@@ -3,6 +3,7 @@ import { TelegramService } from '../../../services/telegram/telegram.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { InitData, User, UserService } from '../../../services/user/user.service';
+import { CartService } from '../../../services/cart/cart.service';
 
 @Component({
   selector: 'app-start.component',
@@ -15,6 +16,7 @@ export class StartComponent implements OnInit, OnDestroy {
   tg = inject(TelegramService);
   router = inject(Router)
   userService = inject(UserService);
+  cartService = inject(CartService);
 
   constructor(private http: HttpClient) { }
 
@@ -24,12 +26,14 @@ export class StartComponent implements OnInit, OnDestroy {
 
     if (this.userService.getStorageData()) {
       this.getUserIdByTgId(this.userService.getTgId());
-      return;
+    }
+
+    if (this.userService.getId()) {
+      this.getCartId();
     }
   }
 
   ngOnDestroy(): void {
-    console.info('On destroy id: ', this.userService.getId());
   }
 
   createOrGetTelegramUserData(): void {
@@ -61,6 +65,18 @@ export class StartComponent implements OnInit, OnDestroy {
       },
       error: (err) => {
         console.error(err);
+      }
+    })
+  }
+
+  getCartId(): void {
+    this.cartService.getCartIdByUserId(this.userService.getId()).subscribe({
+      next: (data) => {
+        console.log('Got it')
+        this.userService.saveCartId(data.id);
+      },
+      error: (err) => {
+        console.error('Error while getting cartId', err);
       }
     })
   }

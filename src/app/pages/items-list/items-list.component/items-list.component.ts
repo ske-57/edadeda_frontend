@@ -17,36 +17,36 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   itemService = inject(ItemService)
 
   itemsList: Item[] = [
-    {
-      "id": 1,
-      "title": "BMW M5 F90",
-      "description": "The best car ever i saw",
-      "price": 123,
-      "location": "Moscow City",
-      "status": "AVAILABLE",
-      "auto_report_link": "https://example.com",
-      "seller_id": 2
-    },
-    {
-      "id": 3,
-      "title": "BMW M5 F90",
-      "description": "The best car ever i saw",
-      "price": 123,
-      "location": "Moscow City",
-      "status": "RESERVED",
-      "auto_report_link": "https://example.com",
-      "seller_id": 2
-    },
-    {
-      "id": 4,
-      "title": "Toyota Supra",
-      "description": "The Paul's Walker car",
-      "price": 39000,
-      "location": "Brazil",
-      "status": "CLOSED",
-      "auto_report_link": "https://example.com",
-      "seller_id": 4
-    }
+    // {
+    //   "id": 1,
+    //   "title": "BMW M5 F90",
+    //   "description": "The best car ever i saw",
+    //   "price": 123,
+    //   "location": "Moscow City",
+    //   "status": "AVAILABLE",
+    //   "auto_report_link": "https://example.com",
+    //   "seller_id": 2
+    // },
+    // {
+    //   "id": 3,
+    //   "title": "BMW M5 F90",
+    //   "description": "The best car ever i saw",
+    //   "price": 123,
+    //   "location": "Moscow City",
+    //   "status": "RESERVED",
+    //   "auto_report_link": "https://example.com",
+    //   "seller_id": 2
+    // },
+    // {
+    //   "id": 4,
+    //   "title": "Toyota Supra",
+    //   "description": "The Paul's Walker car",
+    //   "price": 39000,
+    //   "location": "Brazil",
+    //   "status": "CLOSED",
+    //   "auto_report_link": "https://example.com",
+    //   "seller_id": 4
+    // }
   ]
 
 
